@@ -1,0 +1,15 @@
+artifact_uri: file:///opt/app-root/src/mlops_project/notebooks/dirft_prediction_notebooks/mlruns/0/d100fa8b0a6245fbbe2f39f164a8ef4c/artifacts
+end_time: 1632899262839
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: d100fa8b0a6245fbbe2f39f164a8ef4c
+run_uuid: d100fa8b0a6245fbbe2f39f164a8ef4c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1632899262806
+status: 3
+tags: []
+user_id: '1000760000'

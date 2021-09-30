@@ -1,0 +1,4 @@
+artifact_location: file:///opt/app-root/src/mlops_project/notebooks/dirft_prediction_notebooks/mlruns/0
+experiment_id: '0'
+lifecycle_stage: active
+name: Default

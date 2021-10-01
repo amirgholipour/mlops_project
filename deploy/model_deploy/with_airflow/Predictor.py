@@ -8,11 +8,12 @@ class Predictor(object):
         self.model = joblib.load('model.pkl')
 
 
-    def predict_raw(self, request):
-        data = request.get("data", {}).get("ndarray")
-        mult_types_array = np.array(data, dtype=object)
-
-        result = self.model.predict(mult_types_array)
+    def predict(self, X,features_names):
+        # data = request.get("data", {}).get("ndarray")
+        # mult_types_array = np.array(data, dtype=object)
+        print(X)
+        result = self.model.predict(X)
+        print(result)
 
         return json.dumps(result, cls=JsonSerializer)
 

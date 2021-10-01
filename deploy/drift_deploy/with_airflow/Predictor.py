@@ -1,7 +1,5 @@
 import joblib
-import pandas as pd
 import numpy as np
-from alibi_detect.utils.saving import load_detector
 import json
 
 class Predictor(object):

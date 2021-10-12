@@ -1,0 +1,4 @@
+seldon-core
+tensorflow==2.6.0
+joblib
+pandas

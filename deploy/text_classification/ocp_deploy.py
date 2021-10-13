@@ -2,7 +2,21 @@
 # !pip install minio
 # !pip install boto3
 # !pip install scikit-learn==0.24.2
-# !pip install openshift-client==1.0.13
+# !pip install tensorflow==2.6.0
+import subprocess
+import sys
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])#,"--user"
+install('tensorflow==2.6.0')
+install('mlflow')
+install('minio')
+install('jinja2')
+# install('openshift')
+install('openshift-client')
+install('boto3')
+
+
 # !pip show mlflow
 # !pip show minio
 # !pip show boto3
@@ -14,13 +28,13 @@ import mlflow
 from minio import Minio
 import openshift as oc
 from jinja2 import Template
-
+import tensorflow as tf
 os.environ['MLFLOW_S3_ENDPOINT_URL']='http://minio-ml-workshop:9000'
 os.environ['AWS_ACCESS_KEY_ID']='minio'
 os.environ['AWS_SECRET_ACCESS_KEY']='minio123'
 os.environ['AWS_REGION']='us-east-1'
 os.environ['AWS_BUCKET_NAME']='mlflow'
-# os.environ['MODEL_NAME'] = 'rossdemo'
+# os.environ['MODEL_NAME'] = 'lstmv7'
 # os.environ['MODEL_VERSION'] = '1'
 # os.environ['OPENSHIFT_CLIENT_PYTHON_DEFAULT_OC_PATH'] = '/tmp/oc'
 

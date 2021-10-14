@@ -4,11 +4,18 @@ import numpy as np
 import json
 import traceback
 import sys
+import os
 class Predictor(object):
-
+    
     def __init__(self):
+        self.loaded = False
+
+    def load(self):
+        print("Loading model",os.getpid())
         self.model = tf.keras.models.load_model('model.h5', compile=False)
         self.labelencoder = joblib.load('labelencoder.pkl')
+        self.loaded = True
+        print("Loaded model")
 
 
 
@@ -20,14 +27,14 @@ class Predictor(object):
         X = tf.constant(X)
         print ('step2......')
         print(X)
+        if not self.loaded:
+            self.load()
 #         result = self.model.predict(X)
         try:
             result = self.model.predict(X)
         except Exception as e:
             print(traceback.format_exception(*sys.exc_info()))
             raise # reraises the exception
-        
-
                 
         print ('step3......')
         result = tf.sigmoid(result)
@@ -40,7 +47,7 @@ class Predictor(object):
         
         print(self.labelencoder.inverse_transform(result))
         print ('step6......')
-        return json.dumps(result, cls=JsonSerializer)
+        return json.dumps(result.numpy(), cls=JsonSerializer)
 
 class JsonSerializer(json.JSONEncoder):
     def default(self, obj):

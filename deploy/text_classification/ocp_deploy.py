@@ -3,18 +3,18 @@
 # !pip install boto3
 # !pip install scikit-learn==0.24.2
 # !pip install tensorflow==2.6.0
-import subprocess
-import sys
+# import subprocess
+# import sys
 
-def install(package):
-    subprocess.check_call([sys.executable, "-m", "pip", "install", package])#,"--user"
-install('tensorflow==2.6.0')
-install('mlflow')
-install('minio')
-install('jinja2')
-# install('openshift')
-install('openshift-client')
-install('boto3')
+# def install(package):
+#     subprocess.check_call([sys.executable, "-m", "pip", "install", package])#,"--user"
+# install('tensorflow==2.6.0')
+# install('mlflow')
+# install('minio')
+# install('jinja2')
+# # install('openshift')
+# install('openshift-client')
+# install('boto3')
 
 
 # !pip show mlflow
@@ -22,7 +22,7 @@ install('boto3')
 # !pip show boto3
 # !pip show scikit-learn
 # !pip show openshift-client
-
+import sys
 import os
 import mlflow
 from minio import Minio
@@ -89,7 +89,13 @@ def download_artifacts():
     
         
 init()
-run_id = download_artifacts()
+try:
+    run_id = download_artifacts()
+except:
+    print('Something happened in download_artifacts')
+    print(model_name)
+    print (model_version)
+    sys.exit(-1)
 
 print("Start OCP things...")
 

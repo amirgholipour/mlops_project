@@ -1,4 +1,3 @@
-
 import tensorflow as tf
 import joblib
 import numpy as np
@@ -17,7 +16,7 @@ class Predictor(object):
         # mult_types_array = np.array(data, dtype=object)
         print(X)
 #         result = self.model.predict(X)
-        result = tf.math.argmax(tf.sigmoid(model(X)),axis=1)
+        result = tf.math.argmax(tf.sigmoid(self.model(X)),axis=1)
         print(result)
         print(result.shape)
         print(self.labelencoder.inverse_transform(result))

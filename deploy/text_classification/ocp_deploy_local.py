@@ -108,7 +108,7 @@ token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImF3d2ZabEZ1VG4zNzR3dV9tV0NKZUlpUF8zaWpqUGF
 project = 'anz-ml'
 
 #build from source Docker file
-with oc.api_server(server):
+with oc.apis_server(erver):
     with oc.token(token):
         with oc.project(project), oc.timeout(10*60):
             print('OpenShift client version: {}'.format(oc.get_client_version()))

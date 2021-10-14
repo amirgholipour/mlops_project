@@ -18,7 +18,7 @@
             "include_subdirectories": false,
             "outputs": [],
             "env_vars": [
-              "MODEL_NAME = lastmv12",
+              "MODEL_NAME = lstmv19",
               "MODEL_VERSION = 1"
             ],
             "dependencies": [

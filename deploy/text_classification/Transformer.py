@@ -8,15 +8,19 @@ class Transformer(object):
         self.tokenizer = joblib.load('tokenizer.pkl')
         
     def transform_input(self, X, feature_names, meta):
+        print ('step1......')
         print(X)
-#         X = X[0]
-        print(X[0])
-        output = self.tokenizer.texts_to_sequences(X[0])
-        print(X)
+        print(feature_names)
+# #         X = X[0]
+#         print(X[0])
+        output = self.tokenizer.texts_to_sequences(X)
+        print ('step2......')
+        print(output)
         
-        print(output)
         output = pad_sequences(output, maxlen=348,padding='post')
+        print ('step3......')
         print(output)
-        output = tf.constant(output)
-        print(output)
+#         output = tf.constant(output)
+#         print ('step4......')
+#         print(output)
         return output

@@ -2,11 +2,12 @@ import tensorflow as tf
 import joblib
 import numpy as np
 import json
-
+import traceback
+import sys
 class Predictor(object):
 
     def __init__(self):
-        self.model = tf.keras.models.load_model('model.h5')
+        self.model = tf.keras.models.load_model('model.h5', compile=False)
         self.labelencoder = joblib.load('labelencoder.pkl')
 
 
@@ -14,13 +15,31 @@ class Predictor(object):
     def predict(self, X,features_names):
         # data = request.get("data", {}).get("ndarray")
         # mult_types_array = np.array(data, dtype=object)
+        print ('step1......')
+        print(X)
+        X = tf.constant(X)
+        print ('step2......')
         print(X)
 #         result = self.model.predict(X)
-        result = tf.math.argmax(tf.sigmoid(self.model(X)),axis=1)
+        try:
+            result = self.model.predict(X)
+        except Exception as e:
+            print(traceback.format_exception(*sys.exc_info()))
+            raise # reraises the exception
+        
+
+                
+        print ('step3......')
+        result = tf.sigmoid(result)
+        print ('step4......')
+        print(result)
+        result = tf.math.argmax(result,axis=1)
+        print ('step5......')
         print(result)
         print(result.shape)
+        
         print(self.labelencoder.inverse_transform(result))
-
+        print ('step6......')
         return json.dumps(result, cls=JsonSerializer)
 
 class JsonSerializer(json.JSONEncoder):

@@ -18,7 +18,7 @@
             "include_subdirectories": false,
             "outputs": [],
             "env_vars": [
-              "MODEL_NAME = lstmv25",
+              "MODEL_NAME = lstmv28",
               "MODEL_VERSION = 1"
             ],
             "dependencies": [
